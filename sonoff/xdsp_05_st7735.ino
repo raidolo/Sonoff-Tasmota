@@ -159,7 +159,7 @@ void ST7735PrintLog()
       tft->setTextColor(ST7735_CYAN, ST7735_BLACK);  // Add background color to solve flicker
       if (!Settings.display_rotate) {  // Use hardware scroll
         tft->setCursor(0, tft_scroll);
-        tft->fillRect(0, tft_scroll, tft->width(), theight, ST7735_GREEN);  // Erase line
+        tft->fillRect(0, tft_scroll, tft->width(), theight, ST7735_BLACK);  // Erase line
         tft->print(txt);
         tft_scroll += theight;
         if (tft_scroll >= (tft->height() - TFT_BOTTOM)) {
@@ -196,7 +196,7 @@ void ST7735Refresh()  // Every second
     char space[Settings.display_cols[0] - 17];
     char time[9];    // 13:45:43
 
-    tft->setTextSize(1);
+    tft->setTextSize(2);
     tft->setTextColor(ST7735_YELLOW, ST7735_RED);   // Add background color to solve flicker
     tft->setCursor(0, 0);
 
@@ -253,7 +253,6 @@ boolean Xdsp04(byte function)
           break;
         case FUNC_DISPLAY_DRAW_HLINE:
           tft->writeFastHLine(dsp_x, dsp_y, dsp_len, dsp_color);
-          Serial.println("drawHline " + String(dsp_len) + "color " + String(dsp_color) );
           break;
         case FUNC_DISPLAY_DRAW_VLINE:
           tft->writeFastVLine(dsp_x, dsp_y, dsp_len, dsp_color);
